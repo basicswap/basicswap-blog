@@ -95,7 +95,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, maxImagesPerRow = 3, fixedHei
 
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-4 gallery-spacing">
+      <div className="flex flex-wrap justify-center gap-4 my-8">
         {images.map((image, index) => (
           <div
             key={index}
