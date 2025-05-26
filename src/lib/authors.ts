@@ -8,11 +8,11 @@ export const authors: { [key: string]: Author } = {
   "BasicSwap Team": {
     name: "BasicSwap Team",
     bio: "The official team behind BasicSwap, dedicated to decentralized trading and atomic swaps.",
-    avatar: "https://via.placeholder.com/150/CCCCCC/FFFFFF?text=BS",
+    avatar: "/images/authors/basicswap-bsx-emblem.png",
   },
   "Cryptoguard": {
     name: "Cryptoguard",
     bio: "A passionate contributor to BasicSwap, dedicated to decentralization, privacy, and digital security.",
-    avatar: "https://via.placeholder.com/150/CCCCCC/FFFFFF?text=CG",
+    avatar: "/images/authors/cryptoguard.png",
   },
 };
