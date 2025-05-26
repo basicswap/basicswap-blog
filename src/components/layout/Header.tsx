@@ -19,7 +19,7 @@ const Header = () => {
           <div className="p-8 container flex flex-wrap items-center justify-between mx-auto">
             <div className="xl:w-1/3">
               <Link className="block max-w-max xl:mr-14" href="https://basicswapdex.com" passHref>
-                <Image className="h-12" src={`${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}/images/basicswap-logo.svg`} alt="BasicSwap Logo" width={150} height={50} />
+                <Image className="h-12" src="/images/basicswap-logo.svg" alt="BasicSwap Logo" width={150} height={50} />
               </Link>
             </div>
             {/* Desktop Navigation */}

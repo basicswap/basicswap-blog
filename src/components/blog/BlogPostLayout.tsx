@@ -15,7 +15,7 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, children }) => {
       {post.bannerImage && (
         <div className="mb-8">
           <Image
-            src={`${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}${post.bannerImage}`}
+            src={post.bannerImage}
             alt={post.title}
             width={1920}
             height={690}

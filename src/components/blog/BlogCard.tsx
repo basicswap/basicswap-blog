@@ -11,7 +11,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
     <Link href={`/${post.slug}`} className="block bg-white rounded-lg shadow-md overflow-hidden h-full">
       <Image
-        src={`${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}${post.thumbnail}`}
+        src={post.thumbnail}
         alt={post.title}
         width={1000}
         height={560}

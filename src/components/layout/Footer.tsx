@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Logo */}
           <div className="w-full md:w-auto mb-4 md:mb-0">
             <Link className="block max-w-max" href="https://basicswapdex.com" passHref>
-              <Image className="h-8" src={`${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}/images/basicswap-logo-dark.svg`} alt="BasicSwap Logo" width={150} height={50} />
+              <Image className="h-8" src="/images/basicswap-logo-dark.svg" alt="BasicSwap Logo" width={150} height={50} />
             </Link>
           </div>
 

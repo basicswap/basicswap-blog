@@ -16,7 +16,7 @@ export const metadata = {
     siteName: blogConfig.siteInfo.title,
     images: [
       {
-        url: `${blogConfig.siteInfo.url}${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}/images/blog/welcome-thumbnail.jpg`,
+        url: `${blogConfig.siteInfo.url}/images/blog/welcome-thumbnail.jpg`,
         width: 1200,
         height: 630,
         alt: blogConfig.siteInfo.title,
@@ -28,7 +28,7 @@ export const metadata = {
     title: blogConfig.siteInfo.title,
     description: blogConfig.siteInfo.description,
     images: [
-      `${blogConfig.siteInfo.url}${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}/images/blog/welcome-thumbnail.jpg`,
+      `${blogConfig.siteInfo.url}/images/blog/welcome-thumbnail.jpg`,
     ],
   },
 };

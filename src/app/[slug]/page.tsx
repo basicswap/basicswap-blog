@@ -44,7 +44,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
       publishedTime: post.date,
       images: [
         {
-          url: ogImageUrl ? `${blogConfig.siteInfo.url}${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}${ogImageUrl}` : `${blogConfig.siteInfo.url}/site-meta.png`,
+          url: ogImageUrl ? `${blogConfig.siteInfo.url}${ogImageUrl}` : `${blogConfig.siteInfo.url}/site-meta.png`,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -56,7 +56,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
       title: `${post.title} | ${blogConfig.siteInfo.title}`,
       description: post.description,
       images: [
-        ogImageUrl ? `${blogConfig.siteInfo.url}${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}${ogImageUrl}` : `${blogConfig.siteInfo.url}/site-meta.png`,
+        ogImageUrl ? `${blogConfig.siteInfo.url}${ogImageUrl}` : `${blogConfig.siteInfo.url}/site-meta.png`,
       ],
     },
   };
