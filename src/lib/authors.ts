@@ -15,4 +15,9 @@ export const authors: { [key: string]: Author } = {
     bio: "A passionate contributor to BasicSwap, dedicated to decentralization, privacy, and digital security.",
     avatar: "/images/authors/cryptoguard.png",
   },
+  "Cangrejo": {
+    name: "Cangrejo",
+    bio: "A passionate contributor to BasicSwap, dedicated to decentralization, privacy, and digital security.",
+    avatar: "/images/authors/cangrejo.jpg",
+  },
 };
