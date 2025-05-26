@@ -1,0 +1,205 @@
+---
+title: "Welcome to the BasicSwap DEX Blog — MDX Showcase"
+date: "2025-05-23"
+author: "Cryptoguard"
+tags: ["News", "Story"]
+description: "Explore the powerful capabilities of MDX for creating rich and interactive blog content."
+thumbnail: "/images/blog/welcome-thumbnail.jpg"
+bannerImage: "/images/blog/welcome-banner.jpg"
+---
+
+import Callout from '@/components/mdx/Callout';
+import ChartWrapper from '@/components/mdx/ChartWrapper';
+import StyledTableWrapper from '@/components/mdx/StyledTableWrapper';
+import Counter from '@/components/mdx/Counter';
+import Checklist from '@/components/mdx/Checklist';
+import Timeline from '@/components/mdx/Timeline';
+
+Welcome to the BasicSwap DEX Blog, the new home for BasicSwap-related content! On here, you'll find the latest updates, insights, and announcements from BasicSwap contributors, as well as release blog posts for all major BasicSwap releases.
+
+Starting today, all new BasicSwap-related blog posts will be published on this new platform exclusively. Previous articles will remain available on Particl News under the BasicSwap tag, but will no longer be updated or maintained.
+
+# New Capabilities
+
+The new BasicSwap DEX Blog is built using Next.js and MDX. Posts are written in Markdown and converted to HTML using MDX, and then rendered on the client-side using React. It uses Tailwind CSS for styling, but MDX also supports custom components and other styling options, making this new platform much more flexible and powerful.
+
+## Blog Architecture
+
+This blog is built using Next.js and MDX. Posts are written in Markdown and converted to HTML using MDX, and then rendered on the client-side using React. It uses Tailwind CSS for styling, but MDX also supports custom components and other styling options.
+
+This particular architecture allows for the use of MDX to create interactive blog posts, such as charts, tables, and interactive components, making the content much more engaging and dynamic as well as providing more flexibility in terms of styling and layout to authors
+
+For this reason, this blog post was created with the goal of showcasing the capabilities of MDX and how it can be used to create dynamic and interactive blog content. It also serves as a reference for other BasicSwap contributors who may want to publish on this blog. To know exactly how this blog post was produced and how to replicate its components, please refer to the [MDX Showcase Post](https://github.com/basicswap/basicswap-blog/tree/master/content/posts/mdx-showcase-post.mdc) on Github.
+
+# Standard Markdown Still Works!
+
+Let's start with the basics. You can still use all your favorite Markdown syntax, including: *italic*, **bold**, ~~strikethrough~~, <u>underline</u>, and `code text` words.
+
+## Bullet Points with Nested Lists
+
+-   Item 1
+-   Item 2
+    -   Sub-item A
+    -   Sub-item B
+
+## Numbered Lists
+
+1.  First step
+2.  Second step
+
+## Code Blocks with Syntax Highlighting
+```javascript
+// Code blocks are also supported with syntax highlighting
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+greet("MDX");
+```
+
+```python
+# Python example
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+print(factorial(5))
+```
+
+```bash
+# Bash example
+echo "Hello, World!"
+ls -l
+```
+
+## Blockquotes
+
+> This is a blockquote.
+> It can span multiple lines.
+
+## Horizontal Rules
+
+---
+
+## Links and Images
+
+Here's a [link to BasicSwap](https://basicswapdex.com).
+
+And here's an image:
+
+![BasicSwap Logo](https://basicswapdex.com/images/bs-dashboard.png)
+
+## Simple Table
+
+| Header 1 | Header 2 | Header 3 |
+| -------- | -------- | -------- |
+| Row 1 Col 1 | Row 1 Col 2 | Row 1 Col 3 |
+| Row 2 Col 1 | Row 2 Col 2 | Row 2 Col 3 |
+
+## Heading Sizes
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+# Custom Components in Action
+
+MDX allows you to import and use custom React components directly within your Markdown content. This opens up a lot of possibilities for creating dynamic and interactive blog posts.
+
+## Callouts
+
+Here's an example of a callout components for important information:
+
+<Callout type="info" title="Important Announcement">
+  This is a special message highlighting a key point in our blog post.
+  It uses a custom React component imported directly into MDX.
+</Callout>
+
+<Callout type="warning" title="Warning: Proceed with Caution">
+  This is a warning message. Be careful when implementing the following steps.
+</Callout>
+
+<Callout type="pro-tip" title="Pro Tip: Optimize Performance">
+  For better performance, consider lazy loading components and images.
+</Callout>
+
+<Callout type="resource" title="Resource: MDX Documentation">
+  Find more information about MDX capabilities in the official [MDX documentation](https://mdxjs.com/).
+</Callout>
+
+## Dynamic Content with JavaScript
+
+You can also embed JavaScript expressions directly within your Markdown content. This can be used for dynamic dates, conditional rendering, or other calculations:
+
+The current year is: **{new Date().getFullYear()}**.
+
+Here's a random number: **{Math.random().toFixed(4)}** (will change if you refresh the page).
+
+## Structured Data with Styled Tables
+
+For presenting tabular data, you can use custom styled table components.
+
+<StyledTableWrapper><thead><tr><th>Feature</th><th>Supported</th><th>Notes</th></tr></thead><tbody><tr><td>Custom Components</td><td>Yes</td><td>Import and use any React component.</td></tr><tr><td>Charts</td><td>Yes</td><td>Requires Chart.js or similar.</td></tr><tr><td>JS Expressions</td><td>Yes</td><td>For dynamic content.</td></tr><tr><td>Collapsible Menus</td><td>Yes</td><td>Requires custom component.</td></tr></tbody></StyledTableWrapper>
+
+## Data Visualization with Charts
+
+You can embed interactive charts to present data clearly. While what's displayed here is a static example, you can absolutely embed dynamic charts with live data!
+
+<ChartWrapper type="bar" data={{ labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: 'Project Growth', data: [10, 25, 15, 30], backgroundColor: 'rgba(59, 130, 246, 0.5)' }] }} />
+
+### Here's a dynamic chart with live data:
+
+<ChartWrapper type="line" dataType="bitcoin-transactions" />
+
+# Interactive Elements 
+
+## Collapsible Elements
+
+<Collapsible title="Click to reveal a secret message!">
+  <p>You found it! BasicSwap is awesome!</p>
+</Collapsible>
+
+## Custom Divs
+
+<CustomDiv className="bg-green-100 text-green-800 p-4 rounded-md mt-4">
+  This is a custom styled div, demonstrating exotic styling possibilities.
+</CustomDiv>
+
+## Interactive Components
+
+Here's an example of an interactive React component embedded directly into MDX:
+
+<Counter />
+
+## Development Checklist
+
+Here's a sample checklist to track development progress (e.g., tasks, bugs, and features that contributors are working on):
+
+<Checklist items={[
+  { id: 'task-1', text: 'Implement core features', completed: true },
+  { id: 'task-2', text: 'Write unit tests', completed: false },
+  { id: 'task-3', text: 'Deploy to staging', completed: false },
+  { id: 'task-4', text: 'Gather user feedback', completed: false },
+]} />
+
+## Project Roadmap
+
+You can even generate components with more advanced functionality, such as timelines or roadmaps:
+
+<Timeline items={[
+  { date: 'Q1 2025', title: 'Phase 1: Core Development', description: 'Initial setup, basic features, and infrastructure.' },
+  { date: 'Q2 2025', title: 'Phase 2: Feature Expansion', description: 'Adding advanced features and user-facing functionalities.' },
+  { date: 'Q3 2025', title: 'Phase 3: Optimization & Testing', description: 'Performance improvements, extensive testing, and bug fixes.' },
+  { date: 'Q4 2025', title: 'Phase 4: Public Launch', description: 'Official release and continuous support.' },
+]} />
+
+# See You Around!
+
+Now that we've explord the basics of MDX, we're ready to start pumping out some some great content in this new BasicSwap home. Stay tuned for more exciting updates and announcements from BasicSwap contributors, and make sure to bookmark this blog so that you don't miss out on any new content!

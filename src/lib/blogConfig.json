@@ -1,0 +1,15 @@
+{
+  "staticTags": [
+    "News",
+    "Release",
+    "Report",
+    "Coin",
+    "Story"
+  ],
+  "siteInfo": {
+    "title": "BasicSwap Blog",
+    "description": "Your central hub for the latest news, updates, and insights on BasicSwap DEX.",
+    "url": "https://blog.basicswapdex.com",
+    "author": "BasicSwap Team"
+  }
+}
