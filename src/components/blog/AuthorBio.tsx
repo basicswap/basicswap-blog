@@ -9,7 +9,7 @@ const AuthorBio: React.FC<AuthorBioProps> = ({ author }) => {
   const currentAuthor: Author = authors[author] || {
     name: author,
     bio: "A contributor to the BasicSwap blog.",
-    avatar: `${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}/images/basicswap-logo.svg`,
+    avatar: `${process.env.NODE_ENV === 'production' ? '/basicswap-blog' : ''}/images/authors/basicswap-bsx-emblem.png`,
   };
 
   return (
