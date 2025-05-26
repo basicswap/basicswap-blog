@@ -30,7 +30,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
     return {};
   }
 
-  const ogImageUrl = post.bannerImage || post.thumbnail;
+  const ogImageUrl = post.thumbnail || post.bannerImage;
 
   return {
     title: `${post.title} | ${blogConfig.siteInfo.title}`,

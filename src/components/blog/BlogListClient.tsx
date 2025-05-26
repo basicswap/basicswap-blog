@@ -45,7 +45,7 @@ const BlogListClient: React.FC<BlogListClientProps> = ({ posts }) => {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row gap-4 mb-8">
+      <div className="flex flex-col md:flex-row gap-4 mb-8 items-stretch">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <TagDropdown allTags={allTags} selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
       </div>

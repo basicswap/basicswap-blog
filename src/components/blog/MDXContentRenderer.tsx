@@ -14,6 +14,7 @@ import Timeline from '../mdx/Timeline';
 import TableOfContents from './TableOfContents';
 import Image from 'next/image';
 import Gallery from '../mdx/Gallery';
+import UrlPreviewCard from '../mdx/UrlPreviewCard';
 
 interface Heading {
   level: number;
@@ -27,6 +28,15 @@ const generateSlug = (text: string) => {
 };
 
 // Define custom components available within MDX
+const isUrl = (text: string) => {
+  try {
+    new URL(text);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 const components = {
   Callout,
   ChartWrapper,
@@ -37,10 +47,15 @@ const components = {
   Counter,
   Checklist,
   Timeline,
-  Image,
   Gallery,
+  UrlPreviewCard,
   table: StyledTableWrapper,
   pre: CustomCodeBlock,
+  img: (props: any) => (
+    <div className="flex justify-center">
+      <Image {...props} />
+    </div>
+  ),
   code: (props: any) => {
     let inlineCodeContent = String(props.children);
     if (inlineCodeContent.startsWith('`') && inlineCodeContent.endsWith('`')) {
@@ -50,6 +65,27 @@ const components = {
   },
   p: (props: any) => {
     const { children } = props;
+
+    interface AnchorProps {
+      href?: string;
+      children?: React.ReactNode;
+    }
+
+    // Check if the paragraph contains only a URL that should be rendered as a preview card
+    if (
+      React.Children.count(children) === 1 &&
+      React.isValidElement(children) &&
+      (children.type === 'a')
+    ) {
+      const anchorElement = children as React.ReactElement<AnchorProps>;
+      if (
+        typeof anchorElement.props.href === 'string' &&
+        isUrl(anchorElement.props.href) &&
+        anchorElement.props.children === anchorElement.props.href
+      ) {
+        return <UrlPreviewCard url={anchorElement.props.href} />;
+      }
+    }
     if (React.isValidElement(children) && children.type === CustomCodeBlock) {
       return children;
     }
@@ -61,7 +97,9 @@ const components = {
     }
     return <p className="my-2 leading-relaxed" {...props} />;
   },
-  
+  a: (props: any) => {
+    return <a className="text-blue-600 hover:underline" {...props} />;
+  },
   // Custom heading components to add IDs for linking
   h1: (props: any) => {
     const slug = generateSlug(props.children);
