@@ -88,3 +88,9 @@ body {
   font-weight: 600;
   color: #2c5282;
 }
+
+/* Custom style for spacing above and below Gallery component */
+.prose .gallery-spacing {
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
