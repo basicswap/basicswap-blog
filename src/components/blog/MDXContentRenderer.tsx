@@ -12,6 +12,7 @@ import Counter from '../mdx/Counter';
 import Checklist from '../mdx/Checklist';
 import Timeline from '../mdx/Timeline';
 import TableOfContents from './TableOfContents';
+import Image from 'next/image';
 
 interface Heading {
   level: number;
@@ -35,6 +36,7 @@ const components = {
   Counter,
   Checklist,
   Timeline,
+  Image,
   table: StyledTableWrapper,
   pre: CustomCodeBlock,
   code: (props: any) => {
