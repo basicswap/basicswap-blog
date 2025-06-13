@@ -88,3 +88,9 @@ body {
   font-weight: 600;
   color: #2c5282;
 }
+
+/* Custom style for gallery component bottom spacing */
+.flex.flex-wrap.justify-center.gap-4.my-8 {
+  margin-top: 0.1em !important;
+  margin-bottom: 3em !important;
+}

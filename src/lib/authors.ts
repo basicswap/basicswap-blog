@@ -7,7 +7,7 @@ export interface Author {
 export const authors: { [key: string]: Author } = {
   "BasicSwap Team": {
     name: "BasicSwap Team",
-    bio: "The official team behind BasicSwap, dedicated to decentralized trading and atomic swaps.",
+    bio: "The official team behind BasicSwap. We're a group of passionate contributors dedicated to making atomic swap technology ubiquitous by creating accessible, user-friendly solutions for everyone.",
     avatar: "/images/authors/basicswap-bsx-emblem.png",
   },
   "Cryptoguard": {

@@ -6,7 +6,14 @@ const nextConfig = {
   },
   trailingSlash: true,
   images: {
-    unoptimized: true
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'basicswapdex.com',
+        pathname: '/images/**',
+      },
+    ],
   },
 }
 

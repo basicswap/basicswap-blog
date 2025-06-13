@@ -15,6 +15,7 @@ import TableOfContents from './TableOfContents';
 import Image from 'next/image';
 import Gallery from '../mdx/Gallery';
 import UrlPreviewCard from '../mdx/UrlPreviewCard';
+import YouTube from '../mdx/YouTube';
 
 interface Heading {
   level: number;
@@ -22,12 +23,10 @@ interface Heading {
   slug: string;
 }
 
-// Helper function to generate slug from text
 const generateSlug = (text: string) => {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 };
 
-// Define custom components available within MDX
 const isUrl = (text: string) => {
   try {
     new URL(text);
@@ -37,102 +36,110 @@ const isUrl = (text: string) => {
   }
 };
 
-const components = {
-  Callout,
-  ChartWrapper,
-  StyledTableWrapper,
-  CustomCodeBlock,
-  Collapsible,
-  CustomDiv,
-  Counter,
-  Checklist,
-  Timeline,
-  Gallery,
-  UrlPreviewCard,
-  table: StyledTableWrapper,
-  pre: CustomCodeBlock,
-  img: (props: any) => (
-    <div className="flex justify-center">
-      <Image {...props} />
-    </div>
-  ),
-  code: (props: any) => {
-    let inlineCodeContent = String(props.children);
-    if (inlineCodeContent.startsWith('`') && inlineCodeContent.endsWith('`')) {
-      inlineCodeContent = inlineCodeContent.slice(1, -1);
-    }
-    return <code className="bg-gray-100 text-gray-800 px-1 py-0.5 rounded">{inlineCodeContent}</code>;
-  },
-  p: (props: any) => {
-    const { children } = props;
-
-    interface AnchorProps {
-      href?: string;
-      children?: React.ReactNode;
-    }
-
-    // Check if the paragraph contains only a URL that should be rendered as a preview card
-    if (
-      React.Children.count(children) === 1 &&
-      React.isValidElement(children) &&
-      (children.type === 'a')
-    ) {
-      const anchorElement = children as React.ReactElement<AnchorProps>;
-      if (
-        typeof anchorElement.props.href === 'string' &&
-        isUrl(anchorElement.props.href) &&
-        anchorElement.props.children === anchorElement.props.href
-      ) {
-        return <UrlPreviewCard url={anchorElement.props.href} />;
-      }
-    }
-    if (React.isValidElement(children) && children.type === CustomCodeBlock) {
-      return children;
-    }
-    if (Array.isArray(children)) {
-      const containsCodeBlock = children.some(child => React.isValidElement(child) && child.type === CustomCodeBlock);
-      if (containsCodeBlock) {
-        return <>{children}</>;
-      }
-    }
-    return <p className="my-2 leading-relaxed" {...props} />;
-  },
-  a: (props: any) => {
-    return <a className="text-blue-600 hover:underline" {...props} />;
-  },
-  // Custom heading components to add IDs for linking
-  h1: (props: any) => {
-    const slug = generateSlug(props.children);
-    return <h1 id={slug} {...props} />;
-  },
-  h2: (props: any) => {
-    const slug = generateSlug(props.children);
-    return <h2 id={slug} {...props} />;
-  },
-  h3: (props: any) => {
-    const slug = generateSlug(props.children);
-    return <h3 id={slug} {...props} />;
-  },
-  h4: (props: any) => {
-    const slug = generateSlug(props.children);
-    return <h4 id={slug} {...props} />;
-  },
-  h5: (props: any) => {
-    const slug = generateSlug(props.children);
-    return <h5 id={slug} {...props} />;
-  },
-  h6: (props: any) => {
-    const slug = generateSlug(props.children);
-    return <h6 id={slug} {...props} />;
-  },
-};
-
 interface MDXContentRendererProps {
   content: MDXRemoteSerializeResult;
   headings: Heading[];
+  urlMetaData: Record<string, any>;
 }
 
-const MDXContentRenderer: React.FC<MDXContentRendererProps> = ({ content, headings }) => {
+const MDXContentRenderer: React.FC<MDXContentRendererProps> = ({ content, headings, urlMetaData }) => {
+
+  const components = {
+    Callout,
+    ChartWrapper,
+    StyledTableWrapper,
+    CustomCodeBlock,
+    Collapsible,
+    CustomDiv,
+    Counter,
+    Checklist,
+    Timeline,
+    Gallery,
+    UrlPreviewCard: (props: any) => <UrlPreviewCard {...props} metaData={urlMetaData[props.url]} />,
+    YouTube,
+    table: StyledTableWrapper,
+    pre: CustomCodeBlock,
+    img: (props: any) => {
+      // For external images without width/height, use regular img tag
+      const isExternal = props.src?.startsWith('http');
+      const hasRequiredProps = props.width && props.height;
+      
+      if (isExternal && !hasRequiredProps) {
+        return <img {...props} className="max-w-full h-auto mx-auto block" />;
+      }
+      
+      return <Image {...props} className="mx-auto block" />;
+    },
+    code: (props: any) => {
+      let inlineCodeContent = String(props.children);
+      if (inlineCodeContent.startsWith('`') && inlineCodeContent.endsWith('`')) {
+        inlineCodeContent = inlineCodeContent.slice(1, -1);
+      }
+      return <code className="bg-gray-100 text-gray-800 px-1 py-0.5 rounded">{inlineCodeContent}</code>;
+    },
+    p: (props: any) => {
+      const { children } = props;
+
+      interface AnchorProps {
+        href?: string;
+        children?: React.ReactNode;
+      }
+
+      if (
+        React.Children.count(children) === 1 &&
+        React.isValidElement(children) &&
+        (children.type === 'a')
+      ) {
+        const anchorElement = children as React.ReactElement<AnchorProps>;
+        if (
+          typeof anchorElement.props.href === 'string' &&
+          isUrl(anchorElement.props.href) &&
+          anchorElement.props.children === anchorElement.props.href
+        ) {
+          return <UrlPreviewCard url={anchorElement.props.href} metaData={urlMetaData[anchorElement.props.href]} />;
+        }
+      }
+      if (React.isValidElement(children) && children.type === CustomCodeBlock) {
+        return children;
+      }
+      if (Array.isArray(children)) {
+        const containsCodeBlock = children.some(child => React.isValidElement(child) && child.type === CustomCodeBlock);
+        if (containsCodeBlock) {
+          return <>{children}</>;
+        }
+      }
+      return <p className="my-2 leading-relaxed" {...props} />;
+    },
+    a: (props: any) => {
+      return <a className="text-blue-600 hover:underline" {...props} />;
+    },
+    h1: (props: any) => {
+      const slug = generateSlug(props.children);
+      return <h1 id={slug} {...props} />;
+    },
+    h2: (props: any) => {
+      const slug = generateSlug(props.children);
+      return <h2 id={slug} {...props} />;
+    },
+    h3: (props: any) => {
+      const slug = generateSlug(props.children);
+      return <h3 id={slug} {...props} />;
+    },
+    h4: (props: any) => {
+      const slug = generateSlug(props.children);
+      return <h4 id={slug} {...props} />;
+    },
+    h5: (props: any) => {
+      const slug = generateSlug(props.children);
+      return <h5 id={slug} {...props} />;
+    },
+    h6: (props: any) => {
+      const slug = generateSlug(props.children);
+      return <h6 id={slug} {...props} />;
+    },
+  };
+
+
   return (
     <>
       {headings.length > 0 && <TableOfContents headings={headings} />}

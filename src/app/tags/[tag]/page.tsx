@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import blogConfig from '@/lib/blogConfig.json';
 
-// Generate static paths for all tags
 export async function generateStaticParams() {
   const tags = getAllTags();
   return tags.map((tag) => ({
@@ -12,7 +11,6 @@ export async function generateStaticParams() {
   }));
 }
 
-// Generate dynamic metadata for each tag page
 interface TagPageProps {
   params: Promise<{ tag: string }>;
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;

@@ -10,16 +10,16 @@ interface Heading {
   slug: string;
 }
 
-// Dynamically import MDXContentRenderer with ssr: false
 const MDXContentRenderer = dynamic(() => import('./MDXContentRenderer'), { ssr: false });
 
 interface MDXRendererWrapperProps {
   content: MDXRemoteSerializeResult;
   headings: Heading[];
+  urlMetaData: Record<string, any>;
 }
 
-const MDXRendererWrapper: React.FC<MDXRendererWrapperProps> = ({ content, headings }) => {
-  return <MDXContentRenderer content={content} headings={headings} />;
+const MDXRendererWrapper: React.FC<MDXRendererWrapperProps> = ({ content, headings, urlMetaData }) => {
+  return <MDXContentRenderer content={content} headings={headings} urlMetaData={urlMetaData} />;
 };
 
 export default MDXRendererWrapper;
