@@ -271,11 +271,6 @@ We've resolved the following bugs to improve stability and performance. These fi
   </thead>
   <tbody>
     <tr>
-      <td>`python-gnupg` priority</td>
-      <td>Install `python-gnupg` before other dependencies</td>
-      <td>[1](https://github.com/basicswap/basicswap/commit/f918652b6ca4d188fcc8f9f9698471f7169bd029)</td>
-    </tr>
-    <tr>
       <td>Workaround for Simplex Chat</td> 
       <td>Workaround error specifying server to simplex-chat twice</td>
       <td>[1](https://github.com/basicswap/basicswap/commit/1a42e5e123201d7733b1496d92294b3f5cc833f5)</td>
@@ -289,6 +284,41 @@ We've resolved the following bugs to improve stability and performance. These fi
       <td>Chart and price API fixes</td>
       <td>Add fallback mechanisms for price charts and price calculations</td> 
       <td>[1](https://github.com/basicswap/basicswap/pull/317)</td>
+    </tr>
+    <tr>
+      <td>Fix auto-refresh</td>
+      <td>Fix the auto-refresh's enable/disable logic</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/d1fb11e92a5150de68f691b27efe44d2e5e64732)</td>
+    </tr>
+    <tr>
+      <td>Missing wallets</td>
+      <td>Try and load missing wallets</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/b19edd6771fd898434ca27ae639a87eeab285e99)</td>
+    </tr>
+    <tr>
+      <td>Bid modal fixes</td>
+      <td>Fix for bid modal showing no value when amounts are empty</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/0e19f4139c201c569aa53edc8c146f8de43eb01c)</td>
+    </tr>
+    <tr>
+      <td>Fix changetypes</td>
+      <td>Fix the changetypes for Bitcoin and Litecoin in `prepare.py`</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/f031d41a3897a72f1567127a08cb42fcc8b96d5b)</td>
+    </tr>
+    <tr>
+      <td>Fix BCH filter</td>
+      <td>Fix a bug with BCH in the filters</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
+    </tr>
+    <tr>
+      <td>Persistent filtering</td>
+      <td>Ensure filters remain applied when tables update</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/2b945f3e3ab59b68492041eadd99e7cf57efe7cb)</td>
+    </tr>
+    <tr>
+      <td>GUI fixes</td>
+      <td>Various GUI fixes</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6ad9cb24fe8bc303977e749be3c32e6222da26bf), [2](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
     </tr>
   </tbody>
 </StyledTableWrapper>
@@ -343,8 +373,13 @@ We've also made several improvements, which are also live on the [`dev` branch (
     </tr>
     <tr>
       <td>Start Simplex client in run.py</td>
-      <td>Start Simplex client in run.py</td> 
+      <td>Start Simplex client in run.py script</td> 
       <td>[1](https://github.com/basicswap/basicswap/commit/f269881990e6b2c825d3c327a97f545f123d51ae)</td>
+    </tr>
+    <tr>
+      <td>Add Simplex to prepare.py</td>
+      <td>Add Simplex to the prepare.py script</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/ff149e988c4c761e623f868c795a670c33875383)</td>
     </tr>
     <tr>
       <td>Log process ending</td>
@@ -362,9 +397,39 @@ We've also made several improvements, which are also live on the [`dev` branch (
       <td>[1](https://github.com/basicswap/basicswap/commit/b3c946d056d14d076ef7db6af70c1829aebe7072)</td>
     </tr>
     <tr>
+      <td>`python-gnupg` priority</td>
+      <td>Install `python-gnupg` before other dependencies</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/f918652b6ca4d188fcc8f9f9698471f7169bd029)</td>
+    </tr>
+    <tr>
       <td>Settings page update</td>
       <td>Add improvements to the Settings page</td> 
       <td>[1](https://github.com/basicswap/basicswap/commit/125fbb43db426e9fedebc5ed918c98f50b387780)</td>
+    </tr>
+    <tr>
+      <td>Round `inputAmount`</td>
+      <td>Utility that rounds `inputAmount` to avoid a mantissa error</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/740924632e04f1718a8b0c08d13f4997757dd2f9)</td>
+    </tr>
+    <tr>
+      <td>Swap type management for AMM</td>
+      <td>Add restrictions, sorting, and better swap type selection logic for the AMM based on selected pair</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/1c11767d1e29b108739ed3b751e9cb4cb4879b5b)</td>
+    </tr>
+    <tr>
+      <td>Update `test_swap_direction.py`</td>
+      <td>Additional changes made to `test_swap_direction.py`</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/dd53c8e76da71d6e77fd0cbd0bac70f0019ba9ab)</td>
+    </tr>
+    <tr>
+      <td>Multi-select coin filtering</td>
+      <td>Add the ability to select multiple coins for filtering</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
+    </tr>
+    <tr>
+      <td>Hide Abandon Bid</td>
+      <td>Move the ability to abandon a bid to debug_ui</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
     </tr>
   </tbody>
 </StyledTableWrapper>
