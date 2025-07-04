@@ -1,0 +1,332 @@
+---
+title: "Development Update (July 2025)"
+date: "2025-07-03"
+author: "BasicSwap Team"
+tags: ["News", "Report"]
+description: "A summary of the recent developments and progress made by BasicSwap contributors in July 2025."
+thumbnail: "/images/blog/dev_update_thumbnail.jpg"
+bannerImage: "/images/blog/dev_update_banner.jpg"
+---
+
+import Callout from '@/components/mdx/Callout';
+import ChartWrapper from '@/components/mdx/ChartWrapper';
+import StyledTableWrapper from '@/components/mdx/StyledTableWrapper';
+import Checklist from '@/components/mdx/Checklist';
+import Timeline from '@/components/mdx/Timeline';
+import Gallery from '@/components/mdx/Gallery';
+import UrlPreviewCard from '@/components/mdx/UrlPreviewCard';
+import YouTube from '@/components/mdx/YouTube';
+
+With June behind us and a new production version released a few days ago, it's time for our July 2025 progress report. 
+
+In this report, we'll review our accomplishments from the past month and outline the next steps for the month ahead.
+ 
+# Last Month's Recap: May 2025
+
+Here’s a detailed breakdown of what we accomplished in June.
+
+## Releases
+
+<UrlPreviewCard url="https://blog.basicswapdex.com/amm-tool-integration/" />
+
+On the last day of June, we launched BasicSwap DEX v0.14.6, which includes the first iteration of the Automated Market Making (AMM) tool. This new feature allows users to post offers and bids directly from the user interface, eliminating the need for separate scripts.
+
+This update is now available for all users. To install it, please follow the update instructions [here](https://docs.basicswapdex.com/docs/user-guides/update) or read our release blog post [here](https://blog.basicswapdex.com/amm-tool-integration/). 
+
+## Major Features
+
+### Multi-net Support
+
+We have continued our work on multi-net support, a feature that enables BasicSwap to distribute swap, offer, and bid messages across multiple messaging networks beyond SMSG, particularly when the primary network experiences a high load. While a Minimum Viable Product (MVP) was released in June, we have since made significant architectural improvements, resulting in a more robust and reliable multi-net implementation.
+
+Notably, we've been working on improvements related to Particl Core to ensure cross-compatibility of messages across different networks. This Core update will be released soon.
+
+<Callout type="info" title="MVP Status">
+  Contrary to what was mentioned in the June 2025 progress report, cross-network compatibility will not require a Particl Core hardfork. However, BasicSwap users will need to update their Particl Core node to the latest version to use this new feature.
+</Callout>
+
+Note that the recent multi-net changes were not included in the BasicSwap v0.14.6.0 release as they were not yet production-ready. We intend to push a new version of BasicSwap soon that will include multi-net support.
+
+### Automated Market Making and Advanced Order Management
+
+The main feature of the new v0.14.6 release is the integration of our Automated Market Making (AMM) tool. The AMM and advanced order management tools are now available on a new page that incorporates these functionalities directly into the user interface. This allows users to perform market-making and advanced trading operations from the main interface without needing to run additional scripts.
+
+<Gallery images={[
+  { src: '/images/blog/amm_ss_release_1.png', alt: 'AMM Main Screen' },
+  { src: '/images/blog/amm_ss_release_2.png', alt: 'Create a New Offer' },
+  { src: '/images/blog/amm_ss_release_3.png', alt: 'Create a New Bid' }
+]} />
+
+## Bugs Fixed
+
+We've resolved several bugs to improve stability and performance. Here are the most notable fixes:
+
+<StyledTableWrapper>
+  <thead>
+    <tr>
+      <th>Bug Description</th>
+      <th>Impact</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Workaround for Simplex Chat</td> 
+      <td>Workaround error specifying server to simplex-chat twice</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/1a42e5e123201d7733b1496d92294b3f5cc833f5)</td>
+    </tr>
+    <tr>
+      <td>Price API fixes</td>
+      <td>Fix USD prices via API</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/b3c946d056d14d076ef7db6af70c1829aebe7072)</td>
+    </tr>
+    <tr>
+      <td>Chart and price API fixes</td>
+      <td>Add fallback mechanisms for price charts and price calculations</td> 
+      <td>[1](https://github.com/basicswap/basicswap/pull/317)</td>
+    </tr>
+    <tr>
+      <td>Fix auto-refresh</td>
+      <td>Fix the auto-refresh's enable/disable logic</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/d1fb11e92a5150de68f691b27efe44d2e5e64732)</td>
+    </tr>
+    <tr>
+      <td>Missing wallets</td>
+      <td>Try and load missing wallets</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/b19edd6771fd898434ca27ae639a87eeab285e99)</td>
+    </tr>
+    <tr>
+      <td>Bid modal fixes</td>
+      <td>Fix for bid modal showing no value when amounts are empty</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/0e19f4139c201c569aa53edc8c146f8de43eb01c)</td>
+    </tr>
+    <tr>
+      <td>Fix changetypes</td>
+      <td>Fix the changetypes for Bitcoin and Litecoin in `prepare.py`</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/f031d41a3897a72f1567127a08cb42fcc8b96d5b)</td>
+    </tr>
+    <tr>
+      <td>Fix BCH filter</td>
+      <td>Fix a bug with BCH in the filters</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
+    </tr>
+    <tr>
+      <td>Persistent filtering</td>
+      <td>Ensure filters remain applied when tables update</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/2b945f3e3ab59b68492041eadd99e7cf57efe7cb)</td>
+    </tr>
+    <tr>
+      <td>GUI fixes</td>
+      <td>Various GUI fixes</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6ad9cb24fe8bc303977e749be3c32e6222da26bf), [2](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
+    </tr>
+  </tbody>
+</StyledTableWrapper>
+
+## Improvements Made
+
+We've also made several smaller improvements to the platform:
+
+<StyledTableWrapper>
+  <thead>
+    <tr>
+      <th>Bug Description</th>
+      <th>Impact</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Swap type reset logic</td>
+      <td>Don't reset the swap type in the GUI if it's a valid option</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/df4a6af6a0648410177a12379d5f0754336fd375)</td>
+    </tr>
+    <tr>
+      <td>Simplex direct chats</td>
+      <td>Use Simplex direct chats instead of groups for swaps</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/f3adc17bb8162fd8780aa60d122d491b8cacf3c9), [2](https://github.com/basicswap/basicswap/commit/fea19c00f26a186faeb80c1b7904ac0cd28d0bd2)</td>
+    </tr>
+    <tr>
+      <td>Add socks-proxy support for Simplex</td>
+      <td>Add socks-proxy option for simplex-chat</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/69acf00e0dc1e9d5266fabc74f1afc90bea37a82)</td>
+    </tr>
+    <tr>
+      <td>SimpleX responses update</td> 
+      <td>Update response format for SimpleX Chat v6.3.4</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/bc20fecc82c43305f09f74ba272cccc89b40c32d)</td>
+    </tr>
+    <tr>
+      <td>DB update</td>
+      <td>Sync DB schema to table definitions</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/3faf947588051f1f47fa36fa3f5daab5084b4a30)</td>
+    </tr>
+    <tr>
+      <td>Settings: `max_transient_errors`</td>
+      <td>Add setting for `max_transient_errors`</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/4f47267598deff6af8ed5f82d3bf1732214df0c8)</td>
+    </tr>
+    <tr>
+      <td>Set `dleag_size` per bid</td>
+      <td>Allow to set specific `dleag_size` per bid</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/c6f8e5e2bac719dda3476c45de5c6308ef45d544)</td>
+    </tr>
+    <tr>
+      <td>Start Simplex client in run.py</td>
+      <td>Start Simplex client in run.py script</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/f269881990e6b2c825d3c327a97f545f123d51ae)</td>
+    </tr>
+    <tr>
+      <td>Add Simplex to prepare.py</td>
+      <td>Add Simplex to the prepare.py script</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/ff149e988c4c761e623f868c795a670c33875383)</td>
+    </tr>
+    <tr>
+      <td>Log process ending</td>
+      <td>Detect and log if processes end unexpectedly</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/7f6077815afe7c3630b24c1d435229b339619968)</td>
+    </tr>
+    <tr>
+      <td>Better web client pages</td>
+      <td>Better web client unlock and Change Password pages</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/4055b7d6c85b8597a1eaaea6760e6a94e59128d5), [2](https://github.com/basicswap/basicswap/commit/45b4ac8ca0f1400c2348974b28e0f0fb9eb1bf53)</td>
+    </tr>
+    <tr>
+      <td>AMM bidding</td>
+      <td>Add `use_balance_bidding` to the AMM</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/b3c946d056d14d076ef7db6af70c1829aebe7072)</td>
+    </tr>
+    <tr>
+      <td>`python-gnupg` priority</td>
+      <td>Install `python-gnupg` before other dependencies</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/f918652b6ca4d188fcc8f9f9698471f7169bd029)</td>
+    </tr>
+    <tr>
+      <td>Settings page update</td>
+      <td>Add improvements to the Settings page</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/125fbb43db426e9fedebc5ed918c98f50b387780)</td>
+    </tr>
+    <tr>
+      <td>Round `inputAmount`</td>
+      <td>Utility that rounds `inputAmount` to avoid a mantissa error</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/740924632e04f1718a8b0c08d13f4997757dd2f9)</td>
+    </tr>
+    <tr>
+      <td>Swap type management for AMM</td>
+      <td>Add restrictions, sorting, and better swap type selection logic for the AMM based on selected pair</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/1c11767d1e29b108739ed3b751e9cb4cb4879b5b)</td>
+    </tr>
+    <tr>
+      <td>Update `test_swap_direction.py`</td>
+      <td>Additional changes made to `test_swap_direction.py`</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/dd53c8e76da71d6e77fd0cbd0bac70f0019ba9ab)</td>
+    </tr>
+    <tr>
+      <td>Multi-select coin filtering</td>
+      <td>Add the ability to select multiple coins for filtering</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
+    </tr>
+    <tr>
+      <td>Hide Abandon Bid</td>
+      <td>Move the ability to abandon a bid to debug_ui</td> 
+      <td>[1](https://github.com/basicswap/basicswap/commit/6e5b8fb0ad18e753cc7107836b1132e7f71d9896)</td>
+    </tr>
+  </tbody>
+</StyledTableWrapper>
+
+---
+
+# This Month's Focus: June 2025
+
+## Summary
+
+Now that July is here, we're excited to outline our key development priorities for the coming weeks. While these items represent our most immediate focus, please note that their timelines will vary. Not all will be completed by the end of the month, but they are at the top of our development list.
+<Callout type="info" title="This Month — A Bird's Eye View">
+  <ul>
+    <li>
+      <strong>Major Features:</strong>
+      <ul>
+        <li>Multi-net support</li>
+        <li>Light Wallet Support (SPV)</li>
+        <li>Pre-signed swap transactions</li>
+        <li>Decentralized price oracle</li>
+        <li>Quick swaps</li>
+        <li>Advanced order book design and functionalities</li>
+        <li>Order book ping system</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Key Improvements:</strong>
+      <ul>
+        <li>Networking performance and resilience</li>
+        <li>More adapted user experience for both makers and takers</li>
+        <li>Better accessibility</li>
+        <li>Integrability with external platforms</li>
+        <li>Elimination of fake offers</li>
+      </ul>
+    </li>
+  </ul>
+</Callout>
+
+## Upcoming Milestones (Short-term Roadmap)
+Here's an updated look at our short-term roadmap, representing the next major milestones in approximate order of development. As BasicSwap DEX is a complex project with multiple moving parts, we may adjust the roadmap to better reflect the platform's evolving priorities.
+
+<Timeline items={[
+  { status: 'Live on Dev', title: 'Multi-Net Functionality', description: 'Enables BasicSwap to distribute swap, offer, and bid messages across multiple messaging networks beyond SMSG when the primary network experiences high load.', long_description: 'Currently live on the dev branch, but it does not possess all the bells and whistles we have planned for its official V1 version.\n\nNamely, it is currently not included in the GUI, it must be manually configured outside the user interface by editing a config file, and it doesn\'t yet allow swaps to happen when two participants are on a different network.\n\nThe latter will require modifications to Particl Core via a hardfork, which we are likely to bundle with a potential coming hardfork to tweak the network emission rate and disable treasury (more news about this treasury community CCS proposal to be published next week), should its ccs proposal be voted in favor.' },
+  { status: 'In Progress', title: 'Light Wallet Support (SPV)', description: 'Enables users to use light wallets instead of full nodes for faster setup time and reduced storage requirements.', long_description: '' },
+  { status: 'Planned', title: 'Pre-signed Swap Transactions', description: 'Enables users to safely go offline once a swap is initiated without disrupting the swap process.', long_description: '' },
+  { status: 'Planned', title: 'Quicks Swaps', description: 'Improves and simplifies the process of posting a new offer.', long_description: 'Posting a new offer to the order book is a cumbersome, multi-step process that has remained virtually untouched since the initial BasicSwap GUI release.\n\nThe new "Quick Swaps" feature streamlines this experience, allowing users to post offers from a single, intuitive window without navigating through multiple pages.\n\nImproving this core function is vital for making the DEX more intuitive and will integrate seamlessly with the upcoming order book redesign.' },
+  { status: 'Planned', title: 'Advanced Order Book Design and Functionalities', description: 'Redesign of the order book into a more intuitive and user-friendly interface.', long_description: 'The current BasicSwap order book functions more like an over-the-counter (OTC) offer board than a traditional order book found on major exchanges like Binance.\n\nWhile this isn\'t inherently bad, it doesn\'t align with our mission to make atomic swaps a ubiquitous and viable alternative to high-risk centralized exchanges (CEXs).\n\nTo address this, we are redesigning the order book to be more intuitive and to include features users expect, such as a depth chart, volume indicators, separate buy/sell books, and market order capabilities.\n\nUltimately, our goal is to deliver the security and privacy benefits of adaptor signature atomic swaps within a DEX that has the familiar look and feel of a popular exchange, but without the associated centralized risks.' }, 
+]} />
+
+## Bug Fixes
+
+We've resolved the following bugs to improve stability and performance. These fixes are either live on the [`dev` branch (experimental)](https://github.com/basicswap/basicswap/commits/dev/) or pending in [pull requests](https://github.com/basicswap/basicswap/pulls). What is listed here will likely be merged into the production build in the next BasicSwap release.
+
+<StyledTableWrapper>
+  <thead>
+    <tr>
+      <th>Bug Description</th>
+      <th>Impact</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bugs fixes will be added to this table as they are discovered</td> 
+      <td>Come back to this page later this month</td>
+      <td>[1](https://basicswapdex.com)</td>
+    </tr>
+  </tbody>
+</StyledTableWrapper>
+
+## Improvements
+
+We've also made several improvements, which are also live on the [`dev` branch (experimental)](https://github.com/basicswap/basicswap/commits/dev/) or pending in [pull requests](https://github.com/basicswap/basicswap/pulls). What is listed here will likely be merged into the production build in the next BasicSwap release.
+
+<StyledTableWrapper>
+  <thead>
+    <tr>
+      <th>Bug Description</th>
+      <th>Impact</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Improvements will be added to this table as they are pushed on the `dev` branch or in a pull request</td> 
+      <td>Come back to this page later this month</td>
+      <td>[1](https://basicswapdex.com)</td>
+    </tr>
+  </tbody>
+</StyledTableWrapper>
+
+---
+
+# Stay Connected
+
+Stay connected with us on our social media channels for real-time updates, news, and more.
+
+- **Twitter:** [@basicswapdex](https://twitter.com/basicswapdex)
+- **Matrix:** [BasicSwap channel](https://matrix.to/#/#basicswap:matrix.org)
+- **GitHub:** [BasicSwap repositories](https://github.com/basicswap)
