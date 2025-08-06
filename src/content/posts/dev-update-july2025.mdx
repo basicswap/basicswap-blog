@@ -244,7 +244,7 @@ Now that July is here, we're excited to outline our key development priorities f
 <Callout type="info" title="This Month — A Bird's Eye View">
   <ul>
     <li>
-      <strong>Major Features:</strong>
+      <strong>Major Features Being Looked Into:</strong>
       <ul>
         <li>Multi-net support</li>
         <li>Light Wallet Support (SPV)</li>
@@ -293,9 +293,89 @@ We've resolved the following bugs to improve stability and performance. These fi
   </thead>
   <tbody>
     <tr>
-      <td>Bugs fixes will be added to this table as they are discovered</td> 
-      <td>Come back to this page later this month</td>
-      <td>[1](https://basicswapdex.com)</td>
+      <td>Multi-net — Fix outbox parameter</td>
+      <td>Fix `add_to_outbox` parameter</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/d0ebed93d8ed9bdaefde4d725faf980944e085c4)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Simplex Sqlite duplicate</td>
+      <td>Fix duplicate entries in Simplex Sqlite database</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/e68fc6509bc98c9ce093bddfb5544df1489bf287)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Fix selection when no networks are specified</td>
+      <td>Fix selection when no networks are specified.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/cd147da7dddbe0f41a045d9ff7a29b18b9f67ba9)</td>
+    </tr>
+    <tr>
+      <td>AMM — Skip offer if amount field is missing</td>
+      <td>Skip offer if amount field is missing</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/543a820a1207547de252f3db2adafc570497e9ae)</td>
+    </tr>
+    <tr>
+      <td>AMM — Write amount line if missing</td>
+      <td>Write amount line if missing</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/543a820a1207547de252f3db2adafc570497e9ae)</td>
+    </tr>
+    <tr>
+      <td>AMM — Set `minrate` if missing</td>
+      <td>Set to `0` if missing or `null`</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/543a820a1207547de252f3db2adafc570497e9ae)</td>
+    </tr>
+    <tr>
+      <td>AMM — Fix `amount_step` variable type</td>
+      <td>Use float for instead of string</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/94b972502e4702e5bc33ac662560bb4bb99b7994)</td>
+    </tr>
+    <tr>
+      <td>Offers — Rate parity</td>
+      <td>Use same rates for buying and selling</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/f2c73f62384e3632d039461edc8e6cb272072562)</td>
+    </tr>
+    <tr>
+      <td>Wallets — MWEB balances</td>
+      <td>Fix MWEB balances not showing pending transactions</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a5cc83157d3da198316184ab8a5b425273382336)</td>
+    </tr>
+    <tr>
+      <td>Wallets — USD values for Particl Blind wallets</td>
+      <td>Fix the displayed USD value of Particl Blind wallets</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a5cc83157d3da198316184ab8a5b425273382336)</td>
+    </tr>
+    <tr>
+      <td>ZMQ — ZMQ fix</td>
+      <td>Fix the default ZMQ configuration</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a5cc83157d3da198316184ab8a5b425273382336), [2](https://github.com/basicswap/basicswap/commit/b6e911879775a3d06edce6f35a9f9b7a513812d1)</td>
+    </tr>
+    <tr>
+      <td>ZMQ — Set server keypair</td>
+      <td>Use `recv_multipart` and set server keypair in prepare script.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/6d4200f871cb99b5b81e2163b45c31e6bd25edc7)</td>
+    </tr>
+    <tr>
+      <td>ZMQ — Persistent keypair</td>
+      <td>Use persistent client keypair..</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/fea71308358d9032d249439edacd12f5c9017431)</td>
+    </tr>
+    <tr>
+      <td>Prices — Particl prices</td>
+      <td>Fix Particl prices in charts, specifically to make more independent from MEXC</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a5cc83157d3da198316184ab8a5b425273382336)</td>
+    </tr>
+    <tr>
+      <td>Prices — Various fixes related to rates</td>
+      <td>Fix rate tolerance, GUI rates, json rates, mismatch issues, backend handling calculations, `format_amount`, and more.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/02ceb89d14ae37fc4d4f7ab6582dd93065c2f387)</td>
+    </tr>
+    <tr>
+      <td>API — Add `message_nets` field</td>
+      <td>Add `message_nets` field to bids and offers.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/f932a41b1a641906bcd1286c9bc73f2b0374d2aa)</td>
+    </tr>
+    <tr>
+      <td>Tests — Fix `test_reload`</td>
+      <td>Fix `test_reload`.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/53fc673e7186f252334d9ea825e5e0f20ea37c9c)</td>
     </tr>
   </tbody>
 </StyledTableWrapper>
@@ -307,16 +387,156 @@ We've also made several improvements, which are also live on the [`dev` branch (
 <StyledTableWrapper>
   <thead>
     <tr>
-      <th>Bug Description</th>
+      <th>Description</th>
       <th>Impact</th>
       <th>Link</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Improvements will be added to this table as they are pushed on the `dev` branch or in a pull request</td> 
-      <td>Come back to this page later this month</td>
-      <td>[1](https://basicswapdex.com)</td>
+      <td>Multi-net — Set direct mode per bid</td>
+      <td>Automatically set direct simplex mode per bid.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/1ea8b80bdcfad3c3f6587523811d55e777020e1f)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Set `smsg_payload_version`</td>
+      <td>Set `smsg_payload_version` automatically if unset.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/11bbc9b1284177956117d917517ebe43941bb6a4)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Make backwards compatible</td>
+      <td>Make backwards compatible with smsg payload version 1</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/9cc4734bdae58f32f62c21a45f01b14199db1c29)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Ensure compatibility with Particl Core 23.2.7</td>
+      <td>Only call `smsggetdifficulty` when `smsg_plaintext_version` >= 2</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/6e614ff76dc66f4b35db080c67f1cc73f39f7925)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Add network portal data to database</td>
+      <td>Add network portal data to database.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/355da5ee902411ea1ff60d66c44eadb0e09965b8)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Add network portals</td>
+      <td>Add network portals to allow users to swap with each other even if using different networks.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/e73e084a6d37708d9ddfc40ec0d750ad3ebd70cc)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Manage SMSG pubkeys within BasicSwap</td>
+      <td>SMSG pubkeys are now managed and stored within BasicSwap instead of Particl Core.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/10d6b13930d18f42d8a419f9efdae976a5c9c419), [2](https://github.com/basicswap/basicswap/commit/4ba2b877dd946cd59573cb6a1f931a53e9fa43bb)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Error handling</td>
+      <td>Don't raise an error if multiple networks are active (for testing pre smsg-plaintext-version2).</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/4b010cfee06ef374a5a0ba960a28827f4df51036)</td>
+    </tr>
+    <tr>
+      <td>Multi-net — Rename `smsg_plaintext_version`</td>
+      <td>Rename `smsg_plaintext_version`.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/dd2e8d1b5921522f09ea3a4d8eec5b3710c10ba9)</td>
+    </tr>
+    <tr>
+      <td>Core — Lock-tx flexibility</td>
+      <td>Allow lock-tx `nLockTime` to be > chain height + 2.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/4fa61e8e493588bc7ae29e9268bec7f7fccc18cc)</td>
+    </tr>
+    <tr>
+      <td>Core — Fix `verifyMessage` parameter</td>
+      <td>Fix `verifyMessage` parameter order.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/72481337e1ebef0be086c3e46a9bd9cda453c5c7)</td>
+    </tr>
+    <tr>
+      <td>Export — Change default key derivation paths</td>
+      <td>Allows users to import keys generated on BasicSwap into Electrum. Only applies when using description wallets. To match keys from legacy (`sethdseed`) wallets set the `{COIN}_USE_LEGACY_KEY_PATHS` environment variable before running `prepare.py`.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/d92fa0c61d544e23ff4e7b4e0a544c43dbce710f)</td>
+    </tr>
+    <tr>
+      <td>Github — Pre-commit hooks</td>
+      <td>Add pre-commit hooks to ensure code quality</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/5cecef676d371e812e0698583494bc3f1c360cb3)</td>
+    </tr>
+    <tr>
+      <td>Particl — Add `deprecaterpc`</td>
+      <td>Add `deprecaterpc` line to `particl.conf`.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/fafbd0defe9e572b8020859e55746d00d6792d52)</td>
+    </tr>
+    <tr>
+      <td>Particl — Set `messagemagic` string</td>
+      <td>Explicitly set `messagemagic` string for Particl v27.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/235a8f6830651ca77c605b69c1a4db5503393aef)</td>
+    </tr>
+    <tr>
+      <td>Particl — Version bump</td>
+      <td>Bump Particl Core to version 27.2.1.0</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a171bbb48a964f0d81931364d41c9f0606ef26db)</td>
+    </tr>
+    <tr>
+      <td>Particl — Version bump</td>
+      <td>Bump Particl Core to version 27.2.2.0 (fixes ZMQ missing curve functions and `signmessage` for v23).</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/7ee1931176dc9e8efb7040773f83813324845c63)</td>
+    </tr>
+    <tr>
+      <td>Wownero — Confirmations bump</td>
+      <td>Coins unlock after 4 confirmations instead of 3</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/221a06ba44d864faa8f07cbf4e5929ee907a792e)</td>
+    </tr>
+    <tr>
+      <td>Wownero — Efficiency improvements</td>
+      <td>Reuse `threadPollXMRChainstate` & `monerod_proxy_config`</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/90a162f0ea3fda9d8e639718a7f49e59ebc78950)</td>
+    </tr>
+    <tr>
+      <td>Monero — Version bump</td>
+      <td>Bump Monero deamon to version 0.18.4.1</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/56ec500797f7d73e6ac1a793b02aaab73c3f9e43)</td>
+    </tr>
+    <tr>
+      <td>Dash — Version bump</td>
+      <td>Bump Dash Core to version 22.1.3</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/bf5396dd178655782adb9ab0c8d152f0c98360af)</td>
+    </tr>
+    <tr>
+      <td>Wallets — Dynamic balances</td>
+      <td>Balances now update dynamically within the Wallets page of the GUI</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a5cc83157d3da198316184ab8a5b425273382336)</td>
+    </tr>
+    <tr>
+      <td>Notifications — New notification system</td>
+      <td>More dynamic and useful GUI notifications using Toasts</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a5cc83157d3da198316184ab8a5b425273382336)</td>
+    </tr>
+    <tr>
+      <td>Notifications — Toasts update and history</td>
+      <td>Updated toasts and added notifications history</td>
+      <td>[1](https://github.com/basicswap/basicswap/pull/348/commits/223dba2f0fcd34102e8a061f019b2e7df9d13a3e)</td>
+    </tr>
+    <tr>
+      <td>Wallets — ZMQ for Particl balances</td>
+      <td>Use ZMR for Particl Core balances</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/a5cc83157d3da198316184ab8a5b425273382336)</td>
+    </tr>
+    <tr>
+      <td>AMM — UI improvements for consistency</td>
+      <td>Icon beside amount and consistent size of add/edit</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/11f1454627f7c85ffae1f4a3a833267e70f0e2ce)</td>
+    </tr>
+    <tr>
+      <td>Prepare — Switch core repositories</td>
+      <td>Add an environment variable to switch between the core repositories.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/55bad836a9b1a4f10eb461b9fa17934e16a8d760)</td>
+    </tr>
+    <tr>
+      <td>Core — Relative paths</td>
+      <td>Add the ability to use relative paths in inputs</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/e3f51a7ac31484c99bfc6edf3496cdd377eac6d9)</td>
+    </tr>
+    <tr>
+      <td>Prepare — Enable network logging category</td>
+      <td>Enable network logging category.</td>
+      <td>[1](https://github.com/basicswap/basicswap/commit/aa2611166592c22ea3daad520a771b73d5e8e8c0)</td>
     </tr>
   </tbody>
 </StyledTableWrapper>
