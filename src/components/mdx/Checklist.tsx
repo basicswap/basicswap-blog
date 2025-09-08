@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Status = "Planned" | "In Progress" | "In Testing" | "Live on Dev" | "In Production";
+type Status = "Planned" | "In Progress" | "Research" | "In Testing" | "Live on Dev" | "In Production";
 
 interface ChecklistItem {
   id: string;
@@ -15,6 +15,8 @@ interface ChecklistProps {
 
 const getStatusColor = (status: Status) => {
   switch (status) {
+    case "Research":
+      return "bg-cyan-400";
     case "Planned":
       return "bg-gray-400";
     case "In Progress":
