@@ -4,8 +4,8 @@ date: "2025-11-15"
 author: "BasicSwap Team"
 tags: ["News", "Release", "Hardfork", "Coin Updates"]
 description: "A new version of BasicSwap is now available for download."
-thumbnail: "/images/blog/Medium_BSX_15.jpg"
-bannerImage: "/images/blog/Blog_BSX_15.jpg"
+thumbnail: "/images/blog/Medium_BSX_15_1.jpg"
+bannerImage: "/images/blog/Blog_BSX_15_1.jpg"
 ---
 
 import Callout from '@/components/mdx/Callout';
@@ -48,7 +48,8 @@ If you've installed BasicSwap following the Docker method...
 1.  Shutdown BasicSwap properly and stop the Docker image (`docker-compose stop`),
 2.  From the basicswap folder, type the `git pull` command,
 3.  In the `/docker` folder, run the `docker-compose build --no-cache` command,
-4.  Once the process completes, launch BasicSwap again using the `docker-compose up` command.
+4.  Execute this commmand to update Firo: `basicswap-prepare --datadir=/coindata --upgradecores`,
+5.  Once the process completes, launch BasicSwap again using the `docker-compose up` command.
 
 Note: Depending on your Docker version, adding a dash between docker and compose may not be necessary and may instead throw an error.
 
@@ -60,7 +61,8 @@ If you've installed BasicSwap following the non-Docker method...
 2.  From the `~/coinswaps/basicswap` folder, type the `git pull` command,
 3.  Execute the following command: `pip install --require-hashes -r requirements.txt`,
 4.  Execute the following command: `pip3 install .`,
-5.  Launch BasicSwap as usual.
+5.  Execute the following command:  `basicswap-prepare --datadir=$HOME/coinswaps --upgradecores`,
+6.  Launch BasicSwap as usual.
 
 ## Install Script
 
