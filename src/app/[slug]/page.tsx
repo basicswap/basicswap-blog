@@ -63,6 +63,19 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   };
 }
 
+function isSafeUrl(url: string): boolean {
+  try {
+    const { protocol, hostname } = new URL(url);
+    if (protocol !== 'http:' && protocol !== 'https:') return false;
+    const host = hostname.toLowerCase();
+    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0' || host === '169.254.169.254') return false;
+    if (/^(10\.|172\.(1[6-9]|2[0-9]|3[01])\.|192\.168\.)/.test(host)) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function extractAndFetchMetaData(mdxContent: string): Promise<Record<string, any>> {
   const urlMetaData: Record<string, any> = {};
   const urlsToFetch = new Set<string>();
@@ -83,6 +96,11 @@ async function extractAndFetchMetaData(mdxContent: string): Promise<Record<strin
   }
 
   for (const url of urlsToFetch) {
+    if (!isSafeUrl(url)) {
+      console.warn(`Skipping unsafe URL: ${url}`);
+      urlMetaData[url] = { error: 'URL not allowed' };
+      continue;
+    }
     try {
       console.log(`Fetching meta data for URL (build time): ${url}`);
       const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
