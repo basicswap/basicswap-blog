@@ -44,19 +44,23 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({ type, data, options, dataTy
 
       const fetchCryptoData = async () => {
         try {
-          const bitcoinResponse = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily');
-          const moneroResponse = await fetch('https://api.coingecko.com/api/v3/coins/monero/market_chart?vs_currency=usd&days=30&interval=daily');
-          const litecoinResponse = await fetch('https://api.coingecko.com/api/v3/coins/litecoin/market_chart?vs_currency=usd&days=30&interval=daily');
-          const tetherResponse = await fetch('https://api.coingecko.com/api/v3/coins/tether/market_chart?vs_currency=usd&days=30&interval=daily');
+          const [bitcoinResponse, moneroResponse, litecoinResponse, tetherResponse] = await Promise.all([
+            fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily'),
+            fetch('https://api.coingecko.com/api/v3/coins/monero/market_chart?vs_currency=usd&days=30&interval=daily'),
+            fetch('https://api.coingecko.com/api/v3/coins/litecoin/market_chart?vs_currency=usd&days=30&interval=daily'),
+            fetch('https://api.coingecko.com/api/v3/coins/tether/market_chart?vs_currency=usd&days=30&interval=daily'),
+          ]);
 
           if (!bitcoinResponse.ok || !moneroResponse.ok || !litecoinResponse.ok || !tetherResponse.ok) {
             throw new Error('One or more crypto data API requests failed.');
           }
 
-          const bitcoinData = await bitcoinResponse.json();
-          const moneroData = await moneroResponse.json();
-          const litecoinData = await litecoinResponse.json();
-          const tetherData = await tetherResponse.json();
+          const [bitcoinData, moneroData, litecoinData, tetherData] = await Promise.all([
+            bitcoinResponse.json(),
+            moneroResponse.json(),
+            litecoinResponse.json(),
+            tetherResponse.json(),
+          ]);
 
           const labels = bitcoinData.total_volumes.map((item: [number, number]) => new Date(item[0]).toLocaleDateString());
 
