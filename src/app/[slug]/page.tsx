@@ -108,12 +108,7 @@ async function extractAndFetchMetaData(mdxContent: string): Promise<Record<strin
         }
       });
       
-      const dom = new JSDOM(html, {
-        resources: 'usable',
-        runScripts: 'outside-only',
-        pretendToBeVisual: false,
-        virtualConsole
-      });
+      const dom = new JSDOM(html, { virtualConsole });
       const doc = dom.window.document;
 
       const extracted: any = {};
