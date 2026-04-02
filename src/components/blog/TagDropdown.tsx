@@ -24,7 +24,7 @@ const TagDropdown: React.FC<TagDropdownProps> = ({ allTags, selectedTag, setSele
           className="h-full justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex items-center"
           id="options-menu"
           aria-haspopup="true"
-          aria-expanded="true"
+          aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
         >
           {selectedTag ? selectedTag : 'All Tags'}
@@ -52,24 +52,24 @@ const TagDropdown: React.FC<TagDropdownProps> = ({ allTags, selectedTag, setSele
           aria-labelledby="options-menu"
         >
           <div className="py-1" role="none">
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+            <button
+              type="button"
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
               onClick={() => handleTagSelect(null)}
             >
               All Tags
-            </a>
+            </button>
             {allTags.map((tag) => (
-              <a
+              <button
                 key={tag}
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                type="button"
+                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
                 onClick={() => handleTagSelect(tag)}
               >
                 {tag}
-              </a>
+              </button>
             ))}
           </div>
         </div>
