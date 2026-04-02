@@ -89,6 +89,11 @@ body {
   color: #2c5282;
 }
 
+.prose code::before,
+.prose code::after {
+  content: '';
+}
+
 /* Custom style for gallery component bottom spacing */
 .flex.flex-wrap.justify-center.gap-4.my-8 {
   margin-top: 0.1em !important;
