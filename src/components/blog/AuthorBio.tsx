@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { authors, Author } from '@/lib/authors';
 
 interface AuthorBioProps {
@@ -14,10 +15,12 @@ const AuthorBio: React.FC<AuthorBioProps> = ({ author }) => {
 
   return (
     <div className="flex items-center space-x-4 mb-8 p-4 bg-gray-100 rounded-lg">
-      <img
+      <Image
         src={currentAuthor.avatar}
         alt={currentAuthor.name}
-        className="w-16 h-16 rounded-full object-cover"
+        width={64}
+        height={64}
+        className="rounded-full object-cover"
       />
       <div>
         <h3 className="text-xl font-bold text-gray-900">{currentAuthor.name}</h3>
