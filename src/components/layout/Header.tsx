@@ -77,10 +77,10 @@ const Header = () => {
               &times;
             </button>
             <ul className="flex flex-col items-center space-y-4">
-              {NAV_LINKS.map(({ href, label, external }) => (
+              {NAV_LINKS.map(({ href, label, external }, i) => (
                 <li key={href}>
                   <Link
-                    className="text-coolGray-400 hover:text-coolGray-50 font-medium text-2xl"
+                    className={`${i === 0 ? 'text-white' : 'text-coolGray-400'} hover:text-coolGray-50 font-medium text-2xl`}
                     href={href}
                     {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     passHref

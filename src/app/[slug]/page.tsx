@@ -186,7 +186,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <BlogPostLayout post={post}>
-      <MDXRendererWrapper content={mdxSource} headings={extractedHeadings} urlMetaData={urlMetaData} /> {/* Pass urlMetaData */}
+      <MDXRendererWrapper content={mdxSource} headings={extractedHeadings} urlMetaData={urlMetaData} />
     </BlogPostLayout>
   );
 }
