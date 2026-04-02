@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import React from 'react';
+import type { UrlMetaData } from '../mdx/UrlPreviewCard';
 
 interface Heading {
   level: number;
@@ -15,7 +16,7 @@ const MDXContentRenderer = dynamic(() => import('./MDXContentRenderer'), { ssr: 
 interface MDXRendererWrapperProps {
   content: MDXRemoteSerializeResult;
   headings: Heading[];
-  urlMetaData: Record<string, any>;
+  urlMetaData: Record<string, UrlMetaData>;
 }
 
 const MDXRendererWrapper: React.FC<MDXRendererWrapperProps> = ({ content, headings, urlMetaData }) => {

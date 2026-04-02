@@ -27,7 +27,9 @@ ChartJS.register(
 
 interface ChartWrapperProps {
   type: 'bar' | 'line' | 'pie';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options?: any;
   dataType?: 'static' | 'bitcoin-transactions';
 }
@@ -98,9 +100,10 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({ type, data, options, dataTy
           setChartData({ labels, datasets });
           setLoading(false);
 
-        } catch (err: any) {
+        } catch (err: unknown) {
+          const errMessage = err instanceof Error ? err.message : String(err);
           console.error("Error fetching crypto data:", err);
-          setError(`Failed to load crypto transaction data. You may be rate limited by the API. Please check your internet connection or browser console for CORS errors. Error: ${err.message}`);
+          setError(`Failed to load crypto transaction data. You may be rate limited by the API. Please check your internet connection or browser console for CORS errors. Error: ${errMessage}`);
           setLoading(false);
         }
       };
@@ -126,9 +129,11 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({ type, data, options, dataTy
         mode: 'index' as const,
         intersect: false,
         callbacks: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           title: function(context: any) {
             return `Date: ${context[0].label}`;
           },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           label: function(context: any) {
             let label = context.dataset.label || '';
             if (label) {

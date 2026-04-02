@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { getAllPostsData } from '@/lib/blog';
 import BlogCard from './BlogCard';
 

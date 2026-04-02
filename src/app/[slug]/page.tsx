@@ -8,6 +8,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 import { JSDOM, VirtualConsole } from 'jsdom';
 import { generateSlug } from '@/lib/slugify';
+import type { UrlMetaData } from '@/components/mdx/UrlPreviewCard';
 
 interface Heading {
   level: number;
@@ -23,7 +24,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string }>, searchParams?: Promise<{ [key: string]: string | string[] | undefined }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const post = getPostData(resolvedParams.slug);
 
@@ -76,8 +77,8 @@ function isSafeUrl(url: string): boolean {
   }
 }
 
-async function extractAndFetchMetaData(mdxContent: string): Promise<Record<string, any>> {
-  const urlMetaData: Record<string, any> = {};
+async function extractAndFetchMetaData(mdxContent: string): Promise<Record<string, UrlMetaData>> {
+  const urlMetaData: Record<string, UrlMetaData> = {};
   const urlsToFetch = new Set<string>();
 
   const urlPreviewCardRegex = /<UrlPreviewCard\s+url="([^"]+)"\s*\/?>/g;
@@ -130,7 +131,7 @@ async function extractAndFetchMetaData(mdxContent: string): Promise<Record<strin
       const dom = new JSDOM(html, { virtualConsole });
       const doc = dom.window.document;
 
-      const extracted: any = {};
+      const extracted: UrlMetaData = {};
       extracted.ogTitle = doc.querySelector('meta[property="og:title"]')?.getAttribute('content') || undefined;
       extracted.ogDescription = doc.querySelector('meta[property="og:description"]')?.getAttribute('content') || undefined;
       extracted.ogImage = doc.querySelector('meta[property="og:image"]')?.getAttribute('content') || undefined;
@@ -164,7 +165,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const urlMetaData = await extractAndFetchMetaData(post.content);
 
 
-  let extractedHeadings: Heading[] = [];
+  const extractedHeadings: Heading[] = [];
   const headingRegex = /^(#{1,6})\s+(.*)$/gm;
   let match;
   while ((match = headingRegex.exec(post.content)) !== null) {

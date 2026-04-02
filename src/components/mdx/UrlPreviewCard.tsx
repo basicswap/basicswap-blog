@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
+export type UrlMetaData = {
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogSiteName?: string;
+  ogUrl?: string;
+  title?: string;
+  description?: string;
+  error?: string;
+} | null;
+
 interface UrlPreviewCardProps {
   url: string;
-  metaData?: {
-    ogTitle?: string;
-    ogDescription?: string;
-    ogImage?: string;
-    ogSiteName?: string;
-    ogUrl?: string;
-    title?: string;
-    description?: string;
-    error?: string;
-  } | null;
+  metaData?: UrlMetaData;
 }
 
 const UrlPreviewCard: React.FC<UrlPreviewCardProps> = ({ url, metaData }) => {
-  const [clientMetaData, setClientMetaData] = useState<any>(null);
+  const [clientMetaData, setClientMetaData] = useState<UrlMetaData>(null);
   const [imageAspectRatio, setImageAspectRatio] = useState<'square' | 'wide' | null>(null);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
