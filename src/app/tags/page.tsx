@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Tags | ${blogConfig.siteInfo.title}`,
     description: `Browse all tags on the ${blogConfig.siteInfo.title}`,
-    url: `${blogConfig.siteInfo.url}/blog/tags`,
+    url: `${blogConfig.siteInfo.url}/tags`,
     siteName: blogConfig.siteInfo.title,
     type: 'website',
   },

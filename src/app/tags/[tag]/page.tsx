@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
     openGraph: {
     title: `Posts tagged "${tag}" | ${blogConfig.siteInfo.title}`,
     description: `Browse all blog posts tagged with "${tag}" on the ${blogConfig.siteInfo.title}`,
-      url: `${blogConfig.siteInfo.url}/blog/tags/${tag}`,
+      url: `${blogConfig.siteInfo.url}/tags/${tag}`,
       siteName: blogConfig.siteInfo.title,
       type: 'website',
     },

@@ -7,7 +7,7 @@ interface SocialShareButtonsProps {
 }
 
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ post }) => {
-  const postUrl = `${blogConfig.siteInfo.url}/blog/${post.slug}`;
+  const postUrl = `${blogConfig.siteInfo.url}/${post.slug}`;
   const shareText = encodeURIComponent(`${post.title} by ${post.author} on BasicSwap Blog`);
 
   return (

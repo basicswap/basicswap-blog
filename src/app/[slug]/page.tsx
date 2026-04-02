@@ -38,7 +38,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
     openGraph: {
       title: `${post.title} | ${blogConfig.siteInfo.title}`,
       description: post.description,
-      url: `${blogConfig.siteInfo.url}/blog/${post.slug}`,
+      url: `${blogConfig.siteInfo.url}/${post.slug}`,
       siteName: blogConfig.siteInfo.title,
       type: 'article',
       publishedTime: post.date,
