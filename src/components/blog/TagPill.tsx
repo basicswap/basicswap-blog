@@ -10,7 +10,7 @@ const TagPill: React.FC<TagPillProps> = ({ tag }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/blog/tags/${tag}`);
+    router.push(`/tags/${tag}`);
   };
 
   return (
