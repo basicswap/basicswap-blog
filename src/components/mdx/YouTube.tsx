@@ -2,15 +2,17 @@ import React from 'react';
 
 interface YouTubeProps {
   videoId: string;
+  title?: string;
 }
 
-const YouTube: React.FC<YouTubeProps> = ({ videoId }) => {
-  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+const YouTube: React.FC<YouTubeProps> = ({ videoId, title = 'YouTube video' }) => {
+  if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) return null;
 
   return (
     <div style={{ position: 'relative', paddingBottom: '56.25%', height: '0', overflow: 'hidden', maxWidth: '100%', background: '#000' }}>
       <iframe
-        src={embedUrl}
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={title}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
