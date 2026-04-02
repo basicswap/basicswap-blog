@@ -84,7 +84,7 @@ async function extractAndFetchMetaData(mdxContent: string): Promise<Record<strin
   for (const url of urlsToFetch) {
     try {
       console.log(`Fetching meta data for URL (build time): ${url}`);
-      const response = await fetch(url);
+      const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
 
       if (!response.ok) {
         console.error(`Failed to fetch meta data for ${url}: ${response.statusText}`);
@@ -128,9 +128,10 @@ async function extractAndFetchMetaData(mdxContent: string): Promise<Record<strin
       urlMetaData[url] = extracted;
       console.log(`Successfully fetched meta data for ${url}`);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
       console.error(`Error fetching or parsing meta data for ${url}:`, error);
-      urlMetaData[url] = { error: `Error fetching preview: ${error.message}` };
+      urlMetaData[url] = { error: `Error fetching preview: ${message}` };
     }
   }
   
