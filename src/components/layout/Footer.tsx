@@ -38,7 +38,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mr-12">
-                <Link className="inline-block text-lg md:text-xl text-coolGray-400 hover:text-coolGray-50 font-medium" href="/blog" passHref>
+                <Link className="inline-block text-lg md:text-xl text-coolGray-400 hover:text-coolGray-50 font-medium" href="/" passHref>
                   Blog
                 </Link>
               </li>
