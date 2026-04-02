@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import blogConfig from './blogConfig.json'
 
 // Define interfaces for type safety
 export interface PostMetadata {
@@ -88,9 +89,7 @@ export function getAllTags(): string[] {
   const posts = getAllPostsData();
   const tags = posts.flatMap(post => post.tags);
   
-  // Include static tags from config
-  const blogConfig = require('./blogConfig.json');
-  const staticTags = blogConfig.staticTags || [];
+  const staticTags: string[] = blogConfig.staticTags ?? [];
   const allTags = [...new Set([...tags, ...staticTags])];
 
   return allTags.sort();
