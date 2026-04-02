@@ -16,16 +16,13 @@ import Image from 'next/image';
 import Gallery from '../mdx/Gallery';
 import UrlPreviewCard from '../mdx/UrlPreviewCard';
 import YouTube from '../mdx/YouTube';
+import { generateSlug } from '@/lib/slugify';
 
 interface Heading {
   level: number;
   text: string;
   slug: string;
 }
-
-const generateSlug = (text: string) => {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-};
 
 const isUrl = (text: string) => {
   try {

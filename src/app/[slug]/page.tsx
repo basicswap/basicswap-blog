@@ -7,6 +7,7 @@ import blogConfig from '@/lib/blogConfig.json';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 import { JSDOM, VirtualConsole } from 'jsdom';
+import { generateSlug } from '@/lib/slugify';
 
 interface Heading {
   level: number;
@@ -151,7 +152,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   while ((match = headingRegex.exec(post.content)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
-    const slug = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const slug = generateSlug(text);
     extractedHeadings.push({ level, text, slug });
   }
 
