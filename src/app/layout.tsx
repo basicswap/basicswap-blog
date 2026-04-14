@@ -1,8 +1,12 @@
 import './globals.css';
+import fs from 'node:fs';
+import path from 'node:path';
 import { Inter } from 'next/font/google';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import blogConfig from '@/lib/blogConfig.json';
+import { fetchAllUrlMetadata } from '@/lib/urlMetadata';
+import { UrlMetaProvider } from '@/lib/urlMetaContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,17 +37,35 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
+async function loadUrlMetadata() {
+  const appDir = path.join(process.cwd(), 'src/app');
+  const entries = fs.readdirSync(appDir, { withFileTypes: true });
+  const mdxSources: string[] = [];
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const pageMdx = path.join(appDir, entry.name, 'page.mdx');
+    if (fs.existsSync(pageMdx)) {
+      mdxSources.push(fs.readFileSync(pageMdx, 'utf8'));
+    }
+  }
+  return fetchAllUrlMetadata(mdxSources);
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const urlMetadata = await loadUrlMetadata();
+
   return (
     <html lang="en">
       <body className={`${inter.className} bg-[#fefffe] min-h-screen flex flex-col`}>
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <UrlMetaProvider value={urlMetadata}>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </UrlMetaProvider>
       </body>
     </html>
   );
