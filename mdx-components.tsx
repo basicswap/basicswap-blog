@@ -14,6 +14,7 @@ import Gallery from '@/components/mdx/Gallery';
 import UrlPreviewCard from '@/components/mdx/UrlPreviewCard';
 import YouTube from '@/components/mdx/YouTube';
 import { generateSlug } from '@/lib/slugify';
+import { resolveImageDimensions } from '@/lib/imageDimensions';
 
 const headingWithId = (
   Tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
@@ -48,8 +49,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const srcString = typeof src === 'string' ? src : undefined;
       if (!srcString) return null;
       const isExternal = srcString.startsWith('http');
-      const w = Number(width);
-      const h = Number(height);
+      const dims = isExternal ? null : resolveImageDimensions(srcString);
+      const w = Number(width) || dims?.width;
+      const h = Number(height) || dims?.height;
       if (isExternal || !w || !h) {
         // eslint-disable-next-line @next/next/no-img-element
         return (
