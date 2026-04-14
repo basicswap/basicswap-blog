@@ -46,3 +46,6 @@ next-env.d.ts
 # build-time URL metadata cache
 .next-url-cache.json
 /public/og-cache/
+
+# unpublished drafts (kept on disk, not tracked)
+/src/content/drafts/*
