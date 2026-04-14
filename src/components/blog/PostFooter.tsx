@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostMetadata } from '@/lib/blog';
+import type { PostMetadata } from '@/lib/postTypes';
 import AuthorBio from './AuthorBio';
 import SocialShareButtons from './SocialShareButtons';
 import RelatedPosts from './RelatedPosts';

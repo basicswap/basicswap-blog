@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { PostMetadata } from '@/lib/blog';
+import type { PostMetadata } from '@/lib/postTypes';
 import TagPill from './TagPill';
 
 interface BlogCardProps {

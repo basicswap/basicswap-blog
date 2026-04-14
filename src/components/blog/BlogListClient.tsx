@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { PostMetadata } from '@/lib/blog';
+import type { PostMetadata } from '@/lib/postTypes';
 import BlogCard from './BlogCard';
 import SearchBar from './SearchBar';
 import TagDropdown from './TagDropdown';

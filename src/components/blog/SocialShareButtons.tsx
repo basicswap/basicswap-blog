@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostMetadata } from '@/lib/blog';
+import type { PostMetadata } from '@/lib/postTypes';
 import blogConfig from '@/lib/blogConfig.json';
 
 interface SocialShareButtonsProps {

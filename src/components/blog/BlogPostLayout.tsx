@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { PostMetadata } from '@/lib/blog';
+import type { PostMetadata } from '@/lib/postTypes';
 import TagPill from './TagPill';
 import PostFooter from './PostFooter';
 
