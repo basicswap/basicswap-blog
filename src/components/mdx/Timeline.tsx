@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 type Status = "Planned" | "In Progress" | "Research" | "In Testing" | "Live on Dev" | "In Production";
