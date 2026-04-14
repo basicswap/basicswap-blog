@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local scratchpad (personal scripts, notes, one-off helpers)
+.local/
+
+# build-time URL metadata cache
+.next-url-cache.json
+/public/og-cache/
