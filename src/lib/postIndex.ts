@@ -9,6 +9,7 @@ import { post as devUpdateJune2025 } from '@/app/dev-update-june2025/meta';
 import { post as devUpdateNovember2025 } from '@/app/dev-update-november2025/meta';
 import { post as firoCoreUpdate } from '@/app/firo-core-update/meta';
 import { post as htlcVsAdaptorSignatureSwapsInBasicswap } from '@/app/htlc-vs-adaptor-signature-swaps-in-basicswap/meta';
+import { post as litecoinNexusUpdate } from '@/app/litecoin-nexus-update/meta';
 import { post as mandatoryBasicswapUpdate } from '@/app/mandatory-basicswap-update/meta';
 import { post as mdxShowcasePost } from '@/app/mdx-showcase-post/meta';
 import { post as theDexRevolutionAtomicSwaps } from '@/app/the-dex-revolution-atomic-swaps/meta';
@@ -28,6 +29,7 @@ export const allPosts: PostMetadata[] = [
   devUpdateNovember2025,
   firoCoreUpdate,
   htlcVsAdaptorSignatureSwapsInBasicswap,
+  litecoinNexusUpdate,
   mandatoryBasicswapUpdate,
   mdxShowcasePost,
   theDexRevolutionAtomicSwaps,
