@@ -16,9 +16,7 @@ export const metadata = {
     publishedTime: post.date,
     images: [
       {
-        url: `${blogConfig.siteInfo.url}${post.bannerImage ?? post.thumbnail}`,
-        width: 1200,
-        height: 630,
+        url: `${blogConfig.siteInfo.url}${post.thumbnail}`,
         alt: post.title,
       },
     ],
@@ -27,7 +25,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: `${post.title} | ${blogConfig.siteInfo.title}`,
     description: post.description,
-    images: [`${blogConfig.siteInfo.url}${post.bannerImage ?? post.thumbnail}`],
+    images: [`${blogConfig.siteInfo.url}${post.thumbnail}`],
   },
 };
 
