@@ -1,33 +1,10 @@
 import BlogPostLayout from '@/components/blog/BlogPostLayout';
-import blogConfig from '@/lib/blogConfig.json';
+import { buildPostMetadata } from '@/lib/postMetadata';
 import { post } from './meta';
 
 export { post };
 
-export const metadata = {
-  title: `${post.title} | ${blogConfig.siteInfo.title}`,
-  description: post.description,
-  openGraph: {
-    title: `${post.title} | ${blogConfig.siteInfo.title}`,
-    description: post.description,
-    url: `${blogConfig.siteInfo.url}/${post.slug}`,
-    siteName: blogConfig.siteInfo.title,
-    type: 'article',
-    publishedTime: post.date,
-    images: [
-      {
-        url: `${blogConfig.siteInfo.url}${post.thumbnail}`,
-        alt: post.title,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${post.title} | ${blogConfig.siteInfo.title}`,
-    description: post.description,
-    images: [`${blogConfig.siteInfo.url}${post.thumbnail}`],
-  },
-};
+export const metadata = buildPostMetadata(post);
 
 export default function Layout({ children }) {
   return <BlogPostLayout post={post}>{children}</BlogPostLayout>;
