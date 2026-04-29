@@ -3,6 +3,7 @@ import { post as basicswapDexLitecoinSummit2024 } from '@/app/basicswap-dex-lite
 import { post as basicswapDexMonerokon2024 } from '@/app/basicswap-dex-monerokon-2024/meta';
 import { post as basicswapReleaseV015 } from '@/app/basicswap-release-v015/meta';
 import { post as basicswapReleaseV015_1 } from '@/app/basicswap-release-v015_1/meta';
+import { post as basicswapReleaseV016 } from '@/app/basicswap-release-v016/meta';
 import { post as devUpdateAugust2025 } from '@/app/dev-update-august2025/meta';
 import { post as devUpdateJuly2025 } from '@/app/dev-update-july2025/meta';
 import { post as devUpdateJune2025 } from '@/app/dev-update-june2025/meta';
@@ -23,6 +24,7 @@ export const allPosts: PostMetadata[] = [
   basicswapDexMonerokon2024,
   basicswapReleaseV015,
   basicswapReleaseV015_1,
+  basicswapReleaseV016,
   devUpdateAugust2025,
   devUpdateJuly2025,
   devUpdateJune2025,

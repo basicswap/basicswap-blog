@@ -49,3 +49,6 @@ next-env.d.ts
 
 # unpublished drafts (kept on disk, not tracked)
 /src/content/drafts/*
+
+# reference repos for research
+/reference/
