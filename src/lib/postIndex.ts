@@ -4,6 +4,7 @@ import { post as basicswapDexMonerokon2024 } from '@/app/basicswap-dex-monerokon
 import { post as basicswapReleaseV015 } from '@/app/basicswap-release-v015/meta';
 import { post as basicswapReleaseV015_1 } from '@/app/basicswap-release-v015_1/meta';
 import { post as basicswapReleaseV016 } from '@/app/basicswap-release-v016/meta';
+import { post as basicswapReleaseV016_1 } from '@/app/basicswap-release-v016_1/meta';
 import { post as devUpdateAugust2025 } from '@/app/dev-update-august2025/meta';
 import { post as devUpdateJuly2025 } from '@/app/dev-update-july2025/meta';
 import { post as devUpdateJune2025 } from '@/app/dev-update-june2025/meta';
@@ -25,6 +26,7 @@ export const allPosts: PostMetadata[] = [
   basicswapReleaseV015,
   basicswapReleaseV015_1,
   basicswapReleaseV016,
+  basicswapReleaseV016_1,
   devUpdateAugust2025,
   devUpdateJuly2025,
   devUpdateJune2025,
