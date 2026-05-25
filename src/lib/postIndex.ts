@@ -1,4 +1,5 @@
 import { post as ammToolIntegration } from '@/app/amm-tool-integration/meta';
+import { post as architectureAsDefense } from '@/app/architecture-as-defense-retoswap-haveno-exploit/meta';
 import { post as basicswapDexLitecoinSummit2024 } from '@/app/basicswap-dex-litecoin-summit-2024/meta';
 import { post as basicswapDexMonerokon2024 } from '@/app/basicswap-dex-monerokon-2024/meta';
 import { post as basicswapReleaseV015 } from '@/app/basicswap-release-v015/meta';
@@ -22,6 +23,7 @@ import type { PostMetadata } from './postTypes';
 
 export const allPosts: PostMetadata[] = [
   ammToolIntegration,
+  architectureAsDefense,
   basicswapDexLitecoinSummit2024,
   basicswapDexMonerokon2024,
   basicswapReleaseV015,
