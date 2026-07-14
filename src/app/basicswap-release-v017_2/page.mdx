@@ -54,7 +54,7 @@ A few fixes make sure the AMM's offers on the network match what is actually ava
 
 *   Revoke requests are now sent as POST. The daemon has required POST for state-changing calls since v0.17.0, so the automation script's older GET-based revokes were being rejected and the offers stayed live. They are now actually withdrawn (commit [`fc6fde4`](https://github.com/basicswap/basicswap/commit/fc6fde4), [PR #556](https://github.com/basicswap/basicswap/pull/556)).
 *   For templates that track a remaining budget (fixed-total and one-time), once part of the budget is filled or is in-flight in an active swap, the script now revokes the outstanding offer and reposts it sized to what is actually left, so the advertised amount never overstates what is available (commit [`4762e2c`](https://github.com/basicswap/basicswap/commit/4762e2c), [PR #556](https://github.com/basicswap/basicswap/pull/556)).
-*   Disabling an offer in the AMM tables now revokes its network copy right away, instead of waiting for the next automation cycle (commit [`843370c`](https://github.com/basicswap/basicswap/commit/843370c), [PR #561](https://github.com/basicswap/basicswap/pull/561)).
+*   Disabling an offer in the AMM tables now revokes its network copy right away. Previously, disabling a template only stopped the automation from reposting it: the offer already published to the network was never revoked, and it stayed live until it expired (commit [`843370c`](https://github.com/basicswap/basicswap/commit/843370c), [PR #561](https://github.com/basicswap/basicswap/pull/561)).
 
 ## Bid Page: Live Updates 📊
 
