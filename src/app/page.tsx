@@ -3,19 +3,22 @@ import BlogListClient from '@/components/blog/BlogListClient';
 import { Metadata } from 'next';
 import blogConfig from '@/lib/blogConfig.json';
 
+const indexTitle = 'BasicSwap Blog — Atomic Swap DEX News, Releases & Guides';
+
 export const metadata: Metadata = {
-  title: `${blogConfig.siteInfo.title} | Blog`,
+  title: { absolute: indexTitle },
   description: blogConfig.siteInfo.description,
+  alternates: { canonical: `${blogConfig.siteInfo.url}/` },
   openGraph: {
-    title: `${blogConfig.siteInfo.title} | Blog`,
+    title: indexTitle,
     description: blogConfig.siteInfo.description,
-    url: `${blogConfig.siteInfo.url}`,
+    url: `${blogConfig.siteInfo.url}/`,
     siteName: blogConfig.siteInfo.title,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${blogConfig.siteInfo.title} | Blog`,
+    title: indexTitle,
     description: blogConfig.siteInfo.description,
   },
 };

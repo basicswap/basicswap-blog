@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import type { PostMetadata } from '@/lib/postTypes';
+import { postUrl } from '@/lib/postMetadata';
+import blogConfig from '@/lib/blogConfig.json';
 import TagPill from './TagPill';
 import PostFooter from './PostFooter';
 
@@ -9,9 +11,41 @@ interface BlogPostLayoutProps {
   children: React.ReactNode;
 }
 
+function buildArticleSchema(post: PostMetadata) {
+  const url = postUrl(post.slug);
+  const site = blogConfig.siteInfo.url;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    image: `${site}${post.bannerImage ?? post.thumbnail}`,
+    keywords: post.tags.join(', '),
+    author:
+      post.author === blogConfig.siteInfo.author
+        ? { '@type': 'Organization', name: post.author, url: 'https://basicswapdex.com' }
+        : { '@type': 'Person', name: post.author },
+    publisher: {
+      '@type': 'Organization',
+      name: 'BasicSwap DEX',
+      url: 'https://basicswapdex.com',
+      logo: { '@type': 'ImageObject', url: `${site}/images/basicswap-logo.svg` },
+    },
+  };
+}
+
 const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, children }) => {
   return (
     <article className="container mx-auto px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildArticleSchema(post)) }}
+      />
       {post.bannerImage && (
         <div className="mb-8">
           <Image

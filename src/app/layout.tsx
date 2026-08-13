@@ -11,7 +11,13 @@ import { UrlMetaProvider } from '@/lib/urlMetaContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'BasicSwap Blog',
+  metadataBase: new URL(blogConfig.siteInfo.url),
+  // Pages set a bare title; this appends the site name. Pages that need the
+  // exact string (the index) set title.absolute instead.
+  title: {
+    default: blogConfig.siteInfo.title,
+    template: `%s | ${blogConfig.siteInfo.title}`,
+  },
   description: 'Your central hub for the latest news, updates, and insights on BasicSwap DEX.',
   openGraph: {
     title: blogConfig.siteInfo.title,

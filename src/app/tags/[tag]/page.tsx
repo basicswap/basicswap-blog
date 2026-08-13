@@ -16,17 +16,33 @@ interface TagPageProps {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+// Tags containing a space arrive percent-encoded ("Coin%20Update"), which
+// matches no post and would send the page to notFound(). Decode before use;
+// an already-decoded value passes through unchanged.
+function readTag(raw: string): string {
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {
   const awaitedParams = await params;
-  const tag = awaitedParams.tag;
+  const tag = readTag(awaitedParams.tag);
+
+  const description = `Browse all blog posts tagged with "${tag}" on the ${blogConfig.siteInfo.title}`;
+  const url = `${blogConfig.siteInfo.url}/tags/${encodeURIComponent(tag)}/`;
 
   return {
-    title: `Posts tagged "${tag}" | ${blogConfig.siteInfo.title}`,
-    description: `Browse all blog posts tagged with "${tag}" on the ${blogConfig.siteInfo.title}`,
+    // The root layout's title template appends the site name.
+    title: `Posts tagged "${tag}"`,
+    description,
+    alternates: { canonical: url },
     openGraph: {
-    title: `Posts tagged "${tag}" | ${blogConfig.siteInfo.title}`,
-    description: `Browse all blog posts tagged with "${tag}" on the ${blogConfig.siteInfo.title}`,
-      url: `${blogConfig.siteInfo.url}/tags/${tag}`,
+      title: `Posts tagged "${tag}" | ${blogConfig.siteInfo.title}`,
+      description,
+      url,
       siteName: blogConfig.siteInfo.title,
       type: 'website',
     },
@@ -40,7 +56,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
 
 export default async function TagArchivePage({ params }: TagPageProps) {
   const awaitedParams = await params;
-  const tag = awaitedParams.tag;
+  const tag = readTag(awaitedParams.tag);
   const allPosts = getAllPostsData();
   const filteredPosts = allPosts.filter(post => post.tags.includes(tag));
 
