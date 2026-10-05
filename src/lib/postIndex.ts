@@ -16,6 +16,7 @@ import { post as basicswapReleaseV017_8V017_9 } from '@/app/basicswap-release-v0
 import { post as basicswapReleaseV018_0V018_5 } from '@/app/basicswap-release-v018_0-v018_5/meta';
 import { post as basicswapReleaseV018_6V018_9 } from '@/app/basicswap-release-v018_6-v018_9/meta';
 import { post as basicswapReleaseV018_10 } from '@/app/basicswap-release-v018_10/meta';
+import { post as basicswapReleaseV019_0 } from '@/app/basicswap-release-v019_0/meta';
 import { post as basicswapReleaseV017_6 } from '@/app/basicswap-release-v017_6/meta';
 import { post as devUpdateAugust2025 } from '@/app/dev-update-august2025/meta';
 import { post as devUpdateJuly2025 } from '@/app/dev-update-july2025/meta';
@@ -51,6 +52,7 @@ export const allPosts: PostMetadata[] = [
   basicswapReleaseV018_0V018_5,
   basicswapReleaseV018_6V018_9,
   basicswapReleaseV018_10,
+  basicswapReleaseV019_0,
   basicswapReleaseV017_6,
   devUpdateAugust2025,
   devUpdateJuly2025,

@@ -61,7 +61,7 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, children }) => {
       <div className="text-gray-600 text-lg mb-6 flex items-center space-x-4">
         <span>By {post.author}</span>
         <span>&bull;</span>
-        <span>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(post.date))}</span>
+        <span>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(post.date))}</span>
       </div>
       <div className="flex flex-wrap gap-2 mb-8">
         {post.tags.map((tag) => (

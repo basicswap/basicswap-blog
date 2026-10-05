@@ -22,7 +22,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
           {post.title}
         </h2>
         <p className="text-gray-600 text-sm mb-4">
-          By {post.author} on {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(post.date))}
+          By {post.author} on {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(post.date))}
         </p>
         <p className="text-gray-700 mb-4">{post.description}</p>
         <div className="flex flex-wrap gap-2">
